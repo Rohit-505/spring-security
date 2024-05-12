@@ -1,0 +1,32 @@
+# Configuration for authorization server
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-security
+
+
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:${server.port}
+        client:
+          local-client:
+            registration:
+              client-id: local-client
+              client-secret: "custom_password"
+              client-name: Local client
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - authorization_token
+                - refresh_token
+                - direct_grant
+                - password
+              redirect-uris:
+                - "*"
+              scopes:
+                - openid
+                - email
